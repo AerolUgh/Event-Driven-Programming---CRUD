@@ -95,9 +95,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -125,7 +125,7 @@
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.panel2.Location = new System.Drawing.Point(191, 0);
+            this.panel2.Location = new System.Drawing.Point(192, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(780, 707);
             this.panel2.TabIndex = 1;
@@ -818,21 +818,11 @@
             this.panel10.Controls.Add(this.txtSearch);
             this.panel10.Controls.Add(this.btnSearch);
             this.panel10.Controls.Add(this.dataGridView1);
-            this.panel10.Location = new System.Drawing.Point(191, 0);
+            this.panel10.Location = new System.Drawing.Point(192, 2);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(780, 702);
             this.panel10.TabIndex = 2;
             this.panel10.Visible = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(162, -2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(616, 701);
-            this.dataGridView1.TabIndex = 14;
             // 
             // txtSearch
             // 
@@ -854,6 +844,16 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(162, -2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(616, 701);
+            this.dataGridView1.TabIndex = 14;
             // 
             // Form4
             // 
@@ -896,8 +896,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
@@ -959,12 +957,13 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.Panel panel10;
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnAddStud;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
+        public System.Windows.Forms.Panel panel10;
+        public System.Windows.Forms.Panel panel2;
     }
 }

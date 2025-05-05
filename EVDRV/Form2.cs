@@ -282,13 +282,9 @@ namespace EVDRV
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Workbook book = new Workbook();
-            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
-            Worksheet sheet = book.Worksheets[0];
-            book.SaveToFile(path.pathfile);
             this.Hide();
+            Form4 form4 = new Form4(Admin.Name);
+            form4.panel2.Visible = true;
         }
-
-        
     }
 }

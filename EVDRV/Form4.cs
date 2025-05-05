@@ -143,6 +143,7 @@ namespace EVDRV
         {
             Form2 form2 = new Form2();
             form2.Show();
+            panel2.Visible = true;
             panel10.Visible = false;
         }
 
@@ -150,6 +151,7 @@ namespace EVDRV
         {
             Form5 form5 = new Form5();
             form5.Show();
+            panel2.Visible = true;
             panel10.Visible = false;
         }
 
