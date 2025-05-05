@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Spire.Xls;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace EVDRV
 {
@@ -24,14 +25,150 @@ namespace EVDRV
         string name;
         FileSystemWatcher fileWatcher;
         
-        
         public Form4(string Name)
         {
             InitializeComponent();
             name = Name;
             InitializeFileWatcher();
-            LoadData();
             DataSorting.datasorting();
+            LoadPieChartForInActiveAndActive();
+            LoadPieChartForMaleAndFemale();
+            LoadBarChartForColors();
+            LoadBarChartForHobbies();
+        }
+
+        private void LoadPieChartForInActiveAndActive()
+        {
+            chart1.Series.Clear();
+            chart1.Titles.Add("Students");
+
+            Series series = new Series
+            {
+                Name = "Students",
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Pie
+            };
+
+            chart1.Series.Add(series);
+
+            series.Points.AddXY($"Active \n{ShowCounts(11, "1")}", ShowCounts(11, "1"));
+            series.Points.AddXY($"Inactive \n{ShowCounts(11, "0")}", ShowCounts(11, "0"));
+        }
+
+        private void LoadPieChartForMaleAndFemale()
+        {
+            chart2.Series.Clear();
+            chart2.Titles.Add("Gender");
+
+            Series series = new Series
+            {
+                Name = "Gender",
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Pie
+            };
+
+            chart2.Series.Add(series);
+            
+            series.Points.AddXY($"Male \n{ShowCounts(2, "Male")}", ShowCounts(2, "Male"));
+            series.Points.AddXY($"Female \n{ShowCounts(2, "Female")}", ShowCounts(2, "Female"));
+        }
+
+        private void LoadBarChartForColors()
+        {
+            chart3.Series.Clear();
+            chart3.Titles.Add("Colors");
+
+            Series series = new Series
+            {
+                Name = "Colors",
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Bar
+            };
+
+            chart3.Series.Add(series);
+
+            series.Points.AddXY($"Blue", ShowCounts(4, "Blue"));
+            series.Points.AddXY($"Yellow", ShowCounts(4, "Yellow"));
+            series.Points.AddXY($"Black", ShowCounts(4, "Black"));
+            series.Points.AddXY($"White", ShowCounts(4, "White"));
+            series.Points.AddXY($"Pink", ShowCounts(4, "Pink"));
+            series.Points.AddXY($"Red", ShowCounts(4, "Red"));
+            series.Points.AddXY($"Orange", ShowCounts(4, "Orange"));
+            series.Points.AddXY($"Green", ShowCounts(4, "Green"));
+        }
+
+        private void LoadBarChartForCourses()
+        {
+            chart5.Series.Clear();
+            chart5.Titles.Add("Colors");
+
+            Series series = new Series
+            {
+                Name = "Colors",
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Bar
+            };
+
+            chart5.Series.Add(series);
+
+            series.Points.AddXY($"Blue", ShowCounts(4, "Blue"));
+            series.Points.AddXY($"Yellow", ShowCounts(4, "Yellow"));
+            series.Points.AddXY($"Black", ShowCounts(4, "Black"));
+            series.Points.AddXY($"White", ShowCounts(4, "White"));
+            series.Points.AddXY($"Pink", ShowCounts(4, "Pink"));
+            series.Points.AddXY($"Red", ShowCounts(4, "Red"));
+            series.Points.AddXY($"Orange", ShowCounts(4, "Orange"));
+            series.Points.AddXY($"Green", ShowCounts(4, "Green"));
+        }
+
+        private void LoadBarChartForHobbies()
+        {
+            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
+            Worksheet sheet = book.Worksheets[0];
+
+            int Rows = sheet.Rows.Length;
+
+            for (int i = 2; i < Rows; i++)
+            {
+                string values = sheet.Range[i, 3].Value;
+                string[] data = values.Split(' ');
+                foreach (var hobbies in data)
+                {
+                    if (hobbies.Contains("Basketball"))
+                    {
+                        basketball++;
+                    }
+                    if (hobbies.Contains("Volleyball"))
+                    {
+                        volleyball++;
+                    }
+                    if (hobbies.Contains("Online-Games"))
+                    {
+                        onlinegames++;
+                    }
+                    if (hobbies.Contains("Others."))
+                    {
+                        others++;
+                    }
+                }
+            }
+
+            chart4.Series.Clear();
+            chart4.Titles.Add("Hobbies");
+
+            Series series = new Series
+            {
+                Name = "Hobbies",
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Bar
+            };
+
+            chart4.Series.Add(series);
+
+            series.Points.AddXY($"Basketball", basketball);
+            series.Points.AddXY($"volleyball", volleyball);
+            series.Points.AddXY($"onlinegames", onlinegames);
+            series.Points.AddXY($"others", others);
         }
 
         private int ShowCounts(int c, string value)
@@ -76,57 +213,13 @@ namespace EVDRV
 
         public void LoadData()
         {
-            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
-            Worksheet sheet = book.Worksheets[0];
-
-            int Rows = sheet.Rows.Length;
-
-            for (int i = 2; i < Rows; i++)
-            {
-                string values = sheet.Range[i, 3].Value;
-                string[] data = values.Split(' ');
-                foreach (var hobbies in data)
-                {
-                    if (hobbies.Contains("Basketball"))
-                    {
-                        basketball++;
-                    }
-                    if (hobbies.Contains("Volleyball"))
-                    {
-                        volleyball++;
-                    }
-                    if (hobbies.Contains("Online-Games"))
-                    {
-                        onlinegames++;
-                    }
-                    if (hobbies.Contains("Others."))
-                    {
-                        others++;
-                    }
-                }
-            }
+            
 
             timer1.Start();
-            lblActive.Text = ShowCounts(11, "1").ToString();
-            lblInactive.Text = ShowCounts(11, "0").ToString();
-            lblMale.Text = ShowCounts(2, "Male").ToString();
-            lblFemale.Text = ShowCounts(2, "Female").ToString();
-            lblBlue.Text = ShowCounts(4, "Blue").ToString();
-            lblYellow.Text = ShowCounts(4, "Yellow").ToString();
-            lblBlack.Text = ShowCounts(4, "Black").ToString();
-            lblWhite.Text = ShowCounts(4, "White").ToString();
-            lblPink.Text = ShowCounts(4, "Pink").ToString();
-            lblRed.Text = ShowCounts(4, "Red").ToString();
-            lblOrange.Text = ShowCounts(4, "Orange").ToString();
-            lblGreen.Text = ShowCounts(4, "Green").ToString();
             lblBSIT.Text = ShowCounts(6, "BSIT").ToString();
             lblBSComEng.Text = ShowCounts(6, "BSComEng").ToString();
             lblBSCS.Text = ShowCounts(6, "BSCS").ToString();
             lblBSNursing.Text = ShowCounts(6, "BSNursing").ToString();
-            lblBasketball.Text = basketball.ToString();
-            lblVolleyball.Text = volleyball.ToString();
-            lblOL.Text = onlinegames.ToString();
-            lblOthers.Text = others.ToString();
             lblName.Text = name;
 
             basketball = volleyball = onlinegames = others = 0;
