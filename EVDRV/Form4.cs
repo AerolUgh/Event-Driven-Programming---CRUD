@@ -35,12 +35,18 @@ namespace EVDRV
             LoadPieChartForMaleAndFemale();
             LoadBarChartForColors();
             LoadBarChartForHobbies();
+            LoadBarChartForCourses();
+            chart1.Titles.Add("Students");
+            chart2.Titles.Add("Gender");
+            chart3.Titles.Add("Colors");
+            chart4.Titles.Add("Hobbies");
+            chart5.Titles.Add("Colors");
+            lblName.Text = name;
         }
 
         private void LoadPieChartForInActiveAndActive()
         {
             chart1.Series.Clear();
-            chart1.Titles.Add("Students");
 
             Series series = new Series
             {
@@ -58,7 +64,6 @@ namespace EVDRV
         private void LoadPieChartForMaleAndFemale()
         {
             chart2.Series.Clear();
-            chart2.Titles.Add("Gender");
 
             Series series = new Series
             {
@@ -76,7 +81,7 @@ namespace EVDRV
         private void LoadBarChartForColors()
         {
             chart3.Series.Clear();
-            chart3.Titles.Add("Colors");
+            
 
             Series series = new Series
             {
@@ -100,7 +105,7 @@ namespace EVDRV
         private void LoadBarChartForCourses()
         {
             chart5.Series.Clear();
-            chart5.Titles.Add("Colors");
+            
 
             Series series = new Series
             {
@@ -110,21 +115,21 @@ namespace EVDRV
             };
 
             chart5.Series.Add(series);
-
-            series.Points.AddXY($"Blue", ShowCounts(4, "Blue"));
-            series.Points.AddXY($"Yellow", ShowCounts(4, "Yellow"));
-            series.Points.AddXY($"Black", ShowCounts(4, "Black"));
-            series.Points.AddXY($"White", ShowCounts(4, "White"));
-            series.Points.AddXY($"Pink", ShowCounts(4, "Pink"));
-            series.Points.AddXY($"Red", ShowCounts(4, "Red"));
-            series.Points.AddXY($"Orange", ShowCounts(4, "Orange"));
-            series.Points.AddXY($"Green", ShowCounts(4, "Green"));
-
+            
+            series.Points.AddXY($"Blue", ShowCounts(6, "BSIT"));
+            series.Points.AddXY($"Yellow", ShowCounts(6, "BSComEng"));
+            series.Points.AddXY($"Black", ShowCounts(6, "BSCS"));
+            series.Points.AddXY($"White", ShowCounts(6, "BSNursing"));
         }
 
         private void LoadBarChartForHobbies()
         {
-            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
+            int basketball = 0;
+            int volleyball = 0;
+            int onlinegames = 0;
+            int others = 0;
+
+            book.LoadFromFile(path.pathfile);
             Worksheet sheet = book.Worksheets[0];
 
             int Rows = sheet.Rows.Length;
@@ -135,28 +140,15 @@ namespace EVDRV
                 string[] data = values.Split(' ');
                 foreach (var hobbies in data)
                 {
-                    if (hobbies.Contains("Basketball"))
-                    {
-                        basketball++;
-                    }
-                    if (hobbies.Contains("Volleyball"))
-                    {
-                        volleyball++;
-                    }
-                    if (hobbies.Contains("Online-Games"))
-                    {
-                        onlinegames++;
-                    }
-                    if (hobbies.Contains("Others."))
-                    {
-                        others++;
-                    }
+                    if (hobbies.Contains("Basketball")) basketball++;
+                    if (hobbies.Contains("Volleyball")) volleyball++;
+                    if (hobbies.Contains("Online-Games")) onlinegames++;
+                    if (hobbies.Contains("Others.")) others++;
                 }
             }
 
             chart4.Series.Clear();
-            chart4.Titles.Add("Hobbies");
-
+            
             Series series = new Series
             {
                 Name = "Hobbies",
@@ -167,10 +159,11 @@ namespace EVDRV
             chart4.Series.Add(series);
 
             series.Points.AddXY($"Basketball", basketball);
-            series.Points.AddXY($"volleyball", volleyball);
-            series.Points.AddXY($"onlinegames", onlinegames);
-            series.Points.AddXY($"others", others);
+            series.Points.AddXY($"Volleyball", volleyball);
+            series.Points.AddXY($"Online-Games", onlinegames);
+            series.Points.AddXY($"Others", others);
         }
+
 
         private int ShowCounts(int c, string value)
         {
@@ -194,13 +187,63 @@ namespace EVDRV
             
             DisplayLogs();
         }
+
         private void InitializeFileWatcher()
         {
-            fileWatcher = new FileSystemWatcher();
-            fileWatcher.Path = Path.GetDirectoryName(path.pathfile);
-            fileWatcher.Changed += fileSystemWatcher1_Changed;
-            fileWatcher.EnableRaisingEvents = true; // Start watching
+            try
+            {
+                string fullPath = path.pathfile;
+
+                // Validate the path first
+                if (string.IsNullOrWhiteSpace(fullPath) || !File.Exists(fullPath))
+                {
+                    MessageBox.Show("The file path is not valid or the file does not exist: " + fullPath);
+                    return;
+                }
+
+                fileWatcher = new FileSystemWatcher
+                {
+                    Path = Path.GetDirectoryName(fullPath),
+                    Filter = Path.GetFileName(fullPath), // Watch only the specific file
+                    NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName
+                };
+
+                fileWatcher.Changed += FileSystemWatcher1_Changed;
+                fileWatcher.EnableRaisingEvents = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error initializing file watcher: " + ex.Message);
+            }
         }
+
+        private void FileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
+        {
+            Thread.Sleep(500); // Wait for the file write to complete
+
+            if (this.IsHandleCreated)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    try
+                    {
+                        fileWatcher.EnableRaisingEvents = false; // 🛑 Stop watching
+
+                        LoadPieChartForInActiveAndActive();
+                        LoadPieChartForMaleAndFemale();
+                        LoadBarChartForColors();
+                        LoadBarChartForHobbies();
+                        LoadBarChartForCourses();
+                    }
+                    finally
+                    {
+                        fileWatcher.EnableRaisingEvents = true; // ✅ Resume watching
+                    }
+                }));
+            }
+
+        }
+
 
         public void DisplayLogs()
         {
@@ -210,20 +253,6 @@ namespace EVDRV
             dt = sheet.ExportDataTable();
 
             dataGridView1.DataSource = dt;
-        }
-
-        public void LoadData()
-        {
-            
-
-            timer1.Start();
-            lblBSIT.Text = ShowCounts(6, "BSIT").ToString();
-            lblBSComEng.Text = ShowCounts(6, "BSComEng").ToString();
-            lblBSCS.Text = ShowCounts(6, "BSCS").ToString();
-            lblBSNursing.Text = ShowCounts(6, "BSNursing").ToString();
-            lblName.Text = name;
-
-            basketball = volleyball = onlinegames = others = 0;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -247,19 +276,6 @@ namespace EVDRV
             form5.Show();
             panel2.Visible = true;
             panel10.Visible = false;
-        }
-
-        private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
-        {
-            Thread.Sleep(500);
-
-            if (this.IsHandleCreated)
-            {
-                this.Invoke(new Action(() =>
-                {
-                    LoadData();
-                }));
-            }
         }
 
         private void btnLogs_Click(object sender, EventArgs e)
