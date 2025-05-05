@@ -119,6 +119,7 @@ namespace EVDRV
             series.Points.AddXY($"Red", ShowCounts(4, "Red"));
             series.Points.AddXY($"Orange", ShowCounts(4, "Orange"));
             series.Points.AddXY($"Green", ShowCounts(4, "Green"));
+
         }
 
         private void LoadBarChartForHobbies()
