@@ -55,7 +55,6 @@
             this.txtCourse = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnChoosePic = new System.Windows.Forms.Button();
@@ -331,7 +330,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Info;
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.btnChoosePic);
@@ -369,16 +367,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(877, 629);
             this.panel1.TabIndex = 43;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(401, 294);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 40);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -506,7 +494,6 @@
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label12;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
-        public System.Windows.Forms.Button button1;
     }
 }
 
