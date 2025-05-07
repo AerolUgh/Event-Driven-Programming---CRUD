@@ -179,8 +179,14 @@ namespace EVDRV
 
         public void InsertData(string name, string gender, string hobbies, string favcolor, string saying, string course, string username, string password, string status, string email, string profilepath, string age)
         {
+           
+
             try
             {
+                book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
+                Worksheet sheet = book.Worksheets[0];
+                int i = sheet.Rows.Length + 1;
+
                 string rad = "";
                 string chk = "";
                 if (radFemale.Checked)
@@ -221,10 +227,6 @@ namespace EVDRV
 
 
                 //form2.GetDataFromFr1(name, rad, chk, favcolor, saying);
-
-                book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
-                Worksheet sheet = book.Worksheets[0];
-                int i = sheet.Rows.Length + 1;
 
                 sheet.Range[i, 1].Value = name;
                 sheet.Range[i, 2].Value = rad;
@@ -295,27 +297,52 @@ namespace EVDRV
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            SaveImageToSavedPhoto();
-
             string rad = "";
             string chk = "";
+            bool isRepeated = true;
 
-            if (ValidateMyForm())
+
+            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
+            Worksheet sheet = book.Worksheets[0];
+
+            for (int i = 2; i <= sheet.Rows.Length; i++)
             {
-                string email = txtEmail.Text;
-                string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
-                if (!Regex.IsMatch(email, gmailPattern))
+                if (sheet.Range[i, 9].Value == txtUserName.Text)
                 {
-                    MessageBox.Show("Please enter a valid Gmail address (e.g., example@gmail.com).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtEmail.Focus();
-                    return;
+                    
+                    isRepeated = true;
                 }
                 else
                 {
-                    MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    isRepeated = false;
+                }
+            }
 
-                    InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
+            if (isRepeated)
+            {
+                MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUserName.Focus();
+            }
+            else if (isRepeated == false)
+            {
+                if (ValidateMyForm())
+                {
+                    SaveImageToSavedPhoto();
+                    string email = txtEmail.Text;
+                    string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+                    if (!Regex.IsMatch(email, gmailPattern))
+                    {
+                        MessageBox.Show("Please enter a valid Gmail address (e.g., example@gmail.com).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtEmail.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
+
+                    }
                 }
             }
         }
