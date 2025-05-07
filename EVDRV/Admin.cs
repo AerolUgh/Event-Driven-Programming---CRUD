@@ -8,7 +8,7 @@ namespace EVDRV
 {
     public class Admin
     {
-        private static string _name;
+        private static string _name = "Vaness Aerol";
         public static string Name
         {
             get { return _name; }
