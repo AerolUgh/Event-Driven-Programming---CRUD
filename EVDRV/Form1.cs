@@ -299,51 +299,49 @@ namespace EVDRV
         {
             string rad = "";
             string chk = "";
-            bool isRepeated = true;
-
+            bool isRepeated = false;
 
             book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
             Worksheet sheet = book.Worksheets[0];
 
-            for (int i = 2; i <= sheet.Rows.Length; i++)
+            if (ValidateMyForm())
             {
-                if (sheet.Range[i, 9].Value == txtUserName.Text)
+                string email = txtEmail.Text;
+                string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+                if (!Regex.IsMatch(email, gmailPattern))
                 {
-                    
-                    isRepeated = true;
+                    MessageBox.Show("Please enter a valid Gmail address (e.g., example@gmail.com).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmail.Focus();
+                    return;
                 }
                 else
                 {
-                    isRepeated = false;
+                    for (int i = 2; i <= sheet.Rows.Length; i++)
+                    {
+                        if (sheet.Range[i, 9].Value == txtUserName.Text)
+                        {
+                            isRepeated = true;
+                            break;
+                        }
+                        else
+                        {
+                            isRepeated = false;
+                        }
+                    }
                 }
             }
 
-            if (isRepeated)
+            if (isRepeated == true)
             {
                 MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUserName.Focus();
             }
             else if (isRepeated == false)
             {
-                if (ValidateMyForm())
-                {
-                    SaveImageToSavedPhoto();
-                    string email = txtEmail.Text;
-                    string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
-                    if (!Regex.IsMatch(email, gmailPattern))
-                    {
-                        MessageBox.Show("Please enter a valid Gmail address (e.g., example@gmail.com).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtEmail.Focus();
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
-
-                    }
-                }
+                InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
+                SaveImageToSavedPhoto();
             }
         }
 
