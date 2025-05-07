@@ -18,10 +18,6 @@ namespace EVDRV
     public partial class Form4: Form
     {
         Workbook book = new Workbook();
-        int basketball = 0;
-        int volleyball = 0;
-        int onlinegames = 0;
-        int others = 0;
         string name;
         FileSystemWatcher fileWatcher;
         
@@ -116,10 +112,10 @@ namespace EVDRV
 
             chart5.Series.Add(series);
             
-            series.Points.AddXY($"Blue", ShowCounts(6, "BSIT"));
-            series.Points.AddXY($"Yellow", ShowCounts(6, "BSComEng"));
-            series.Points.AddXY($"Black", ShowCounts(6, "BSCS"));
-            series.Points.AddXY($"White", ShowCounts(6, "BSNursing"));
+            series.Points.AddXY($"BSIT", ShowCounts(6, "BSIT"));
+            series.Points.AddXY($"BSComEng", ShowCounts(6, "BSComEng"));
+            series.Points.AddXY($"BSCS", ShowCounts(6, "BSCS"));
+            series.Points.AddXY($"BSNursing", ShowCounts(6, "BSNursing"));
         }
 
         private void LoadBarChartForHobbies()
