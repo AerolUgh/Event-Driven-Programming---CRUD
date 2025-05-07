@@ -69,6 +69,11 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
@@ -82,6 +87,11 @@
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -106,14 +116,15 @@
             this.chart5.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart5.Legends.Add(legend1);
-            this.chart5.Location = new System.Drawing.Point(321, 473);
+            this.chart5.Location = new System.Drawing.Point(262, 391);
             this.chart5.Name = "chart5";
+            this.chart5.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart5.Series.Add(series1);
-            this.chart5.Size = new System.Drawing.Size(294, 224);
+            this.chart5.Size = new System.Drawing.Size(245, 224);
             this.chart5.TabIndex = 25;
             this.chart5.Text = "chart5";
             // 
@@ -123,14 +134,15 @@
             this.chart4.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chart4.Legends.Add(legend2);
-            this.chart4.Location = new System.Drawing.Point(464, 253);
+            this.chart4.Location = new System.Drawing.Point(517, 391);
             this.chart4.Name = "chart4";
+            this.chart4.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chart4.Series.Add(series2);
-            this.chart4.Size = new System.Drawing.Size(319, 260);
+            this.chart4.Size = new System.Drawing.Size(245, 224);
             this.chart4.TabIndex = 24;
             this.chart4.Text = "chart4";
             // 
@@ -140,14 +152,17 @@
             this.chart3.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.chart3.Legends.Add(legend3);
-            this.chart3.Location = new System.Drawing.Point(20, 463);
+            this.chart3.Location = new System.Drawing.Point(7, 391);
             this.chart3.Name = "chart3";
+            this.chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar;
+            series3.IsVisibleInLegend = false;
             series3.Legend = "Legend1";
             series3.Name = "Series1";
+            series3.YValuesPerPoint = 2;
             this.chart3.Series.Add(series3);
-            this.chart3.Size = new System.Drawing.Size(294, 224);
+            this.chart3.Size = new System.Drawing.Size(245, 224);
             this.chart3.TabIndex = 23;
             this.chart3.Text = "chart3";
             // 
@@ -157,8 +172,9 @@
             this.chart2.ChartAreas.Add(chartArea4);
             legend4.Name = "Legend1";
             this.chart2.Legends.Add(legend4);
-            this.chart2.Location = new System.Drawing.Point(242, 212);
+            this.chart2.Location = new System.Drawing.Point(388, 152);
             this.chart2.Name = "chart2";
+            this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series4.Legend = "Legend1";
@@ -174,10 +190,12 @@
             this.chart1.ChartAreas.Add(chartArea5);
             legend5.Name = "Legend1";
             this.chart1.Legends.Add(legend5);
-            this.chart1.Location = new System.Drawing.Point(20, 229);
+            this.chart1.Location = new System.Drawing.Point(154, 152);
             this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             series5.Legend = "Legend1";
             series5.Name = "Series1";
             this.chart1.Series.Add(series5);
@@ -198,6 +216,11 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.pictureBox6);
+            this.panel3.Controls.Add(this.pictureBox5);
+            this.panel3.Controls.Add(this.pictureBox4);
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.btnAddStud);
             this.panel3.Controls.Add(this.btnLogs);
             this.panel3.Controls.Add(this.btnInactive);
@@ -213,9 +236,9 @@
             this.btnAddStud.FlatAppearance.BorderSize = 0;
             this.btnAddStud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddStud.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btnAddStud.Location = new System.Drawing.Point(66, 190);
+            this.btnAddStud.Location = new System.Drawing.Point(66, 185);
             this.btnAddStud.Name = "btnAddStud";
-            this.btnAddStud.Size = new System.Drawing.Size(118, 65);
+            this.btnAddStud.Size = new System.Drawing.Size(106, 65);
             this.btnAddStud.TabIndex = 6;
             this.btnAddStud.Text = "Add Student";
             this.btnAddStud.UseVisualStyleBackColor = true;
@@ -226,9 +249,9 @@
             this.btnLogs.FlatAppearance.BorderSize = 0;
             this.btnLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogs.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btnLogs.Location = new System.Drawing.Point(66, 270);
+            this.btnLogs.Location = new System.Drawing.Point(66, 258);
             this.btnLogs.Name = "btnLogs";
-            this.btnLogs.Size = new System.Drawing.Size(118, 65);
+            this.btnLogs.Size = new System.Drawing.Size(106, 65);
             this.btnLogs.TabIndex = 4;
             this.btnLogs.Text = "Logs";
             this.btnLogs.UseVisualStyleBackColor = true;
@@ -239,7 +262,7 @@
             this.btnInactive.FlatAppearance.BorderSize = 0;
             this.btnInactive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInactive.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btnInactive.Location = new System.Drawing.Point(66, 110);
+            this.btnInactive.Location = new System.Drawing.Point(66, 111);
             this.btnInactive.Name = "btnInactive";
             this.btnInactive.Size = new System.Drawing.Size(118, 65);
             this.btnInactive.TabIndex = 3;
@@ -252,9 +275,9 @@
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btnLogout.Location = new System.Drawing.Point(66, 354);
+            this.btnLogout.Location = new System.Drawing.Point(66, 329);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(118, 65);
+            this.btnLogout.Size = new System.Drawing.Size(106, 65);
             this.btnLogout.TabIndex = 5;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
@@ -370,11 +393,11 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Garamond", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(802, 18);
+            this.lblName.Font = new System.Drawing.Font("Garamond", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(775, 18);
             this.lblName.Name = "lblName";
             this.lblName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblName.Size = new System.Drawing.Size(105, 21);
+            this.lblName.Size = new System.Drawing.Size(120, 21);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Vaness Marie";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -382,22 +405,72 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Garamond", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Font = new System.Drawing.Font("Garamond", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.Location = new System.Drawing.Point(200, 18);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(52, 21);
+            this.lblDate.Size = new System.Drawing.Size(58, 21);
             this.lblDate.TabIndex = 1;
             this.lblDate.Text = "label2";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(913, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(906, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(49, 42);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::EVDRV.Properties.Resources.add_friend;
+            this.pictureBox2.Location = new System.Drawing.Point(16, 42);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(53, 51);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 26;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::EVDRV.Properties.Resources.minus;
+            this.pictureBox3.Location = new System.Drawing.Point(16, 115);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(53, 51);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 27;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::EVDRV.Properties.Resources.add_user;
+            this.pictureBox4.Location = new System.Drawing.Point(16, 188);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(53, 51);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 28;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::EVDRV.Properties.Resources.files;
+            this.pictureBox5.Location = new System.Drawing.Point(16, 263);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(53, 51);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 29;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::EVDRV.Properties.Resources.sign_out;
+            this.pictureBox6.Location = new System.Drawing.Point(16, 337);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(53, 51);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 30;
+            this.pictureBox6.TabStop = false;
             // 
             // Form4
             // 
@@ -429,6 +502,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -459,5 +537,10 @@
         private System.Windows.Forms.Label lblDate;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

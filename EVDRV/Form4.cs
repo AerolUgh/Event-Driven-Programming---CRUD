@@ -23,6 +23,7 @@ namespace EVDRV
         
         public Form4(string Name)
         {
+            
             InitializeComponent();
             name = Name;
             InitializeFileWatcher();
@@ -36,7 +37,7 @@ namespace EVDRV
             chart2.Titles.Add("Gender");
             chart3.Titles.Add("Colors");
             chart4.Titles.Add("Hobbies");
-            chart5.Titles.Add("Colors");
+            chart5.Titles.Add("Courses");
             lblName.Text = name;
         }
 
@@ -48,8 +49,10 @@ namespace EVDRV
             {
                 Name = "Students",
                 IsVisibleInLegend = true,
-                ChartType = SeriesChartType.Pie
+                ChartType = SeriesChartType.Pie,
             };
+
+            series.Font = new Font("Tahoma", 9);
 
             chart1.Series.Add(series);
 
@@ -68,6 +71,8 @@ namespace EVDRV
                 ChartType = SeriesChartType.Pie
             };
 
+            series.Font = new Font("Tahoma", 9);
+
             chart2.Series.Add(series);
             
             series.Points.AddXY($"Male \n{ShowCounts(2, "Male")}", ShowCounts(2, "Male"));
@@ -77,8 +82,7 @@ namespace EVDRV
         private void LoadBarChartForColors()
         {
             chart3.Series.Clear();
-            
-
+            chart3.Legends.Clear();
             Series series = new Series
             {
                 Name = "Colors",
@@ -101,11 +105,11 @@ namespace EVDRV
         private void LoadBarChartForCourses()
         {
             chart5.Series.Clear();
-            
+            chart5.Legends.Clear();
 
             Series series = new Series
             {
-                Name = "Colors",
+                Name = "Courses",
                 IsVisibleInLegend = true,
                 ChartType = SeriesChartType.Bar
             };
@@ -144,7 +148,8 @@ namespace EVDRV
             }
 
             chart4.Series.Clear();
-            
+            chart4.Legends.Clear();
+
             Series series = new Series
             {
                 Name = "Hobbies",
