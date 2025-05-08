@@ -24,7 +24,9 @@ namespace EVDRV
 
             Form4 form4 = new Form4(Admin.Name);
 
-            Application.Run(form4);
+            Form6 form6 = new Form6();
+
+            Application.Run(form3);
         }
     }
 }

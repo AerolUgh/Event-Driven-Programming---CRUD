@@ -242,8 +242,7 @@ namespace EVDRV
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            
-            DisplayLogs();
+
         }
 
         private void InitializeFileWatcher()
@@ -302,17 +301,6 @@ namespace EVDRV
 
         }
 
-
-        public void DisplayLogs()
-        {
-            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
-            Worksheet sheet = book.Worksheets[1];
-            DataTable dt = new DataTable();
-            dt = sheet.ExportDataTable();
-
-            dataGridView1.DataSource = dt;
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime currentDateTime = DateTime.Now;
@@ -324,23 +312,19 @@ namespace EVDRV
         {
             Form2 form2 = new Form2();
             form2.Show();
-            panel2.Visible = true;
-            panel10.Visible = false;
         }
 
         private void btnInactive_Click(object sender, EventArgs e)
         {
             Form5 form5 = new Form5();
             form5.Show();
-            panel2.Visible = true;
-            panel10.Visible = false;
         }
 
         private void btnLogs_Click(object sender, EventArgs e)
         {
-            panel10.Visible = true;
-            panel2.Visible = false;
-            DisplayLogs();
+            Form6 form6 = new Form6();
+            form6.Show();
+            form6.DisplayLogs();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -362,21 +346,17 @@ namespace EVDRV
             form1.Show();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void pictureBox7_Click(object sender, EventArgs e)
         {
-            string searchText = txtSearch.Text.Trim().ToLower();
-
-            dataGridView1.ClearSelection();
-            dataGridView1.CurrentCell = null;
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            if (panel5.Visible == true)
             {
-                if (!row.IsNewRow)
-                {
-                    string firstName = row.Cells[0].Value?.ToString().ToLower();
-
-                    row.Visible = string.IsNullOrEmpty(searchText) || (firstName != null && firstName.Contains(searchText));
-                }
+                panel5.Visible = false;
+                panel3.Visible = true;
+            }
+            else
+            {
+                panel3.Visible = false;
+                panel5.Visible = true;
             }
         }
     }

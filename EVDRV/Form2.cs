@@ -159,8 +159,9 @@ namespace EVDRV
             DialogResult res = MessageBox.Show("Are you sure you want to Inactive this Student?", "Confimation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
+                Form6 form6 = new Form6();
                 GetInactiveData();
-                form4.DisplayLogs();
+                form6.DisplayLogs();
             }
             else
             {
@@ -284,7 +285,18 @@ namespace EVDRV
         {
             this.Hide();
             Form4 form4 = new Form4(Admin.Name);
-            form4.panel2.Visible = true;
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            if (panel1.Visible == true)
+            {
+                panel1.Visible = false;
+            }
+            else if (panel1.Visible == false)
+            {
+                panel1.Visible = true;
+            }
         }
     }
 }
