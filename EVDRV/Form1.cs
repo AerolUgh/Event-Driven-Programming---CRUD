@@ -34,7 +34,7 @@ namespace EVDRV
         private bool ValidateMyForm()
         {
             bool isValid = true;
-
+            message = string.Empty;
             bool hasRadioSelected = false;
             bool hasCheckboxSelected = false;
 
@@ -308,6 +308,7 @@ namespace EVDRV
 
             if (ValidateMyForm())
             {
+                
                 string email = txtEmail.Text;
                 string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
                 if (!Regex.IsMatch(email, gmailPattern))
@@ -331,19 +332,19 @@ namespace EVDRV
                         }
                     }
                 }
-            }
 
-            if (isRepeated == true)
-            {
-                MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtUserName.Focus();
-            }
-            else if (isRepeated == false)
-            {
-                MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (isRepeated == true)
+                {
+                    MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtUserName.Focus();
+                }
+                else if (isRepeated == false)
+                {
+                    MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
-                SaveImageToSavedPhoto();
+                    InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
+                    SaveImageToSavedPhoto();
+                }
             }
         }
 
