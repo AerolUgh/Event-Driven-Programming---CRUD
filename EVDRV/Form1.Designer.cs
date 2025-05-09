@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -81,6 +82,12 @@
             this.label14 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -98,11 +105,13 @@
             this.panel14.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
+            this.panel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDisplay
             // 
-            this.btnDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
+            this.btnDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
             this.btnDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDisplay.FlatAppearance.BorderSize = 0;
             this.btnDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -117,7 +126,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -278,7 +287,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -355,7 +364,8 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Info;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
+            this.panel1.Controls.Add(this.panel17);
             this.panel1.Controls.Add(this.panel16);
             this.panel1.Controls.Add(this.panel15);
             this.panel1.Controls.Add(this.panel14);
@@ -572,6 +582,7 @@
             // 
             // panel13
             // 
+            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel13.Controls.Add(this.pictureBox1);
             this.panel13.Controls.Add(this.label11);
@@ -593,6 +604,7 @@
             // 
             // panel14
             // 
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel14.Controls.Add(this.panel2);
             this.panel14.Controls.Add(this.label13);
@@ -606,6 +618,7 @@
             // 
             // panel15
             // 
+            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
             this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel15.Controls.Add(this.label14);
             this.panel15.Controls.Add(this.panel11);
@@ -627,6 +640,7 @@
             // 
             // panel16
             // 
+            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
             this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel16.Controls.Add(this.label15);
             this.panel16.Controls.Add(this.panel4);
@@ -648,6 +662,64 @@
             this.label15.Size = new System.Drawing.Size(103, 21);
             this.label15.TabIndex = 57;
             this.label15.Text = "Other Info.";
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
+            this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel17.Controls.Add(this.dateTimePicker2);
+            this.panel17.Controls.Add(this.lblName);
+            this.panel17.Controls.Add(this.lblDate);
+            this.panel17.Controls.Add(this.pictureBox6);
+            this.panel17.Location = new System.Drawing.Point(-2, -2);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(972, 58);
+            this.panel17.TabIndex = 61;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(525, 19);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 31;
+            this.dateTimePicker2.Visible = false;
+            // 
+            // lblName
+            // 
+            this.lblName.Font = new System.Drawing.Font("Garamond", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(784, 17);
+            this.lblName.Name = "lblName";
+            this.lblName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblName.Size = new System.Drawing.Size(120, 21);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "0";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Garamond", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(9, 18);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(58, 21);
+            this.lblDate.TabIndex = 1;
+            this.lblDate.Text = "label2";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox6.Location = new System.Drawing.Point(910, 7);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(49, 42);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 0;
+            this.pictureBox6.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -693,6 +765,9 @@
             this.panel15.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -752,6 +827,12 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        public System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblDate;
+        public System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

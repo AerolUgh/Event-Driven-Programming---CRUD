@@ -28,6 +28,7 @@ namespace EVDRV
         {
             InitializeComponent();
             form2 = form;
+            lblName.Text = Admin.Name;
         }
 
         private bool ValidateMyForm()
@@ -407,6 +408,13 @@ namespace EVDRV
             {
                 message += "No image in PictureBox to save. \n";
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime currentDateTime = DateTime.Now;
+            dateTimePicker1.Value = currentDateTime;
+            lblDate.Text = currentDateTime.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
     }
 }
