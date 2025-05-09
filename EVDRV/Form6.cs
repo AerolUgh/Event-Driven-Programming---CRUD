@@ -18,6 +18,7 @@ namespace EVDRV
         public Form6()
         {
             InitializeComponent();
+            lblName.Text = Admin.Name;
         }
 
         public void DisplayLogs()
@@ -33,6 +34,19 @@ namespace EVDRV
         private void Form6_Load(object sender, EventArgs e)
         {
             DisplayLogs();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form4 form4 = new Form4(Admin.Name);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime currentDateTime = DateTime.Now;
+            dateTimePicker1.Value = currentDateTime;
+            lblDate.Text = currentDateTime.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -51,12 +65,6 @@ namespace EVDRV
                     row.Visible = string.IsNullOrEmpty(searchText) || (firstName != null && firstName.Contains(searchText));
                 }
             }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form4 form4 = new Form4(Admin.Name);
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace EVDRV
@@ -21,6 +22,7 @@ namespace EVDRV
     {
         private Form2 form2;
         Workbook book = new Workbook();
+        string message = "";
 
         public Form1(Form2 form)
         {
@@ -30,7 +32,6 @@ namespace EVDRV
 
         private bool ValidateMyForm()
         {
-            string message = "";
             bool isValid = true;
 
             bool hasRadioSelected = false;
@@ -38,7 +39,7 @@ namespace EVDRV
 
             foreach (Control ctrl in GetAllControls(this))
             {
-                if (ctrl is TextBox textBox)
+                if (ctrl is System.Windows.Forms.TextBox textBox)
                 {
                     if (string.IsNullOrWhiteSpace(textBox.Text))
                     {
@@ -51,7 +52,7 @@ namespace EVDRV
                         textBox.BackColor = Color.White;
                     }
                 }
-                else if (ctrl is ComboBox comboBox)
+                else if (ctrl is System.Windows.Forms.ComboBox comboBox)
                 {
                     if (string.IsNullOrWhiteSpace(comboBox.Text))
                     {
@@ -318,7 +319,7 @@ namespace EVDRV
                 {
                     for (int i = 2; i <= sheet.Rows.Length; i++)
                     {
-                        if (sheet.Range[i, 9].Value == txtUserName.Text)
+                        if (!string.IsNullOrEmpty(txtUserName.Text) && sheet.Range[i, 9].Value == txtUserName.Text)
                         {
                             isRepeated = true;
                             break;
@@ -404,7 +405,7 @@ namespace EVDRV
             }
             else
             {
-                MessageBox.Show("No image in PictureBox to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                message += "No image in PictureBox to save. \n";
             }
         }
     }

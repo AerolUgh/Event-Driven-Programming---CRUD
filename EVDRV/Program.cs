@@ -26,7 +26,9 @@ namespace EVDRV
 
             Form6 form6 = new Form6();
 
-            Application.Run(form3);
+            Form5 form5 = new Form5();
+
+            Application.Run(form1);
         }
     }
 }

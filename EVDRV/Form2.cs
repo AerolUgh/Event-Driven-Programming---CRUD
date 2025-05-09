@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace EVDRV
 {
@@ -24,6 +25,7 @@ namespace EVDRV
             InitializeComponent();
             form5 = new Form5();
             form4 = new Form4(Admin.Name);
+            lblName.Text = Admin.Name;
         }
 
         public void LoadActiveData()
@@ -287,7 +289,7 @@ namespace EVDRV
             Form4 form4 = new Form4(Admin.Name);
         }
 
-        private void pictureBox7_Click(object sender, EventArgs e)
+        private void pictureBox5_Click(object sender, EventArgs e)
         {
             if (panel1.Visible == true)
             {
@@ -297,6 +299,13 @@ namespace EVDRV
             {
                 panel1.Visible = true;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime currentDateTime = DateTime.Now;
+            dateTimePicker1.Value = currentDateTime;
+            lblDate.Text = currentDateTime.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
     }
 }

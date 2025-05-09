@@ -22,6 +22,7 @@ namespace EVDRV
             LoadInactiveData();
             dataGridView1.ClearSelection(); 
             form4 = new Form4(Admin.Name);
+            lblName.Text = Admin.Name;
         }
 
         public void LoadInactiveData()
@@ -57,15 +58,6 @@ namespace EVDRV
             }
 
             dataGridView1.DataSource = dt;
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            Workbook book = new Workbook();
-            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
-            Worksheet sheet = book.Worksheets[0];
-            book.SaveToFile(path.pathfile);
-            this.Hide();
         }
 
         public void GetActiveData()
@@ -123,11 +115,6 @@ namespace EVDRV
             //}
         }
 
-        private void btnActive_Click(object sender, EventArgs e)
-        {
-            GetActiveData();
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim().ToLower();
@@ -144,6 +131,39 @@ namespace EVDRV
                     row.Visible = string.IsNullOrEmpty(searchText) || (firstName != null && firstName.Contains(searchText));
                 }
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            GetActiveData();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Workbook book = new Workbook();
+            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
+            Worksheet sheet = book.Worksheets[0];
+            book.SaveToFile(path.pathfile);
+            this.Hide();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            if (panel1.Visible == true)
+            {
+                panel1.Visible = false;
+            }
+            else if (panel1.Visible == false)
+            {
+                panel1.Visible = true;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime currentDateTime = DateTime.Now;
+            dateTimePicker1.Value = currentDateTime;
+            lblDate.Text = currentDateTime.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
     }
 }

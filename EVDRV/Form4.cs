@@ -43,11 +43,7 @@ namespace EVDRV
 
         private void LoadPieChartForInActiveAndActive()
         {
-            
             chart1.Series.Clear();
-
-            
-            
 
             Series series = new Series
             {
@@ -251,7 +247,6 @@ namespace EVDRV
             {
                 string fullPath = path.pathfile;
 
-                // Validate the path first
                 if (string.IsNullOrWhiteSpace(fullPath) || !File.Exists(fullPath))
                 {
                     MessageBox.Show("The file path is not valid or the file does not exist: " + fullPath);
@@ -261,7 +256,7 @@ namespace EVDRV
                 fileWatcher = new FileSystemWatcher
                 {
                     Path = Path.GetDirectoryName(fullPath),
-                    Filter = Path.GetFileName(fullPath), // Watch only the specific file
+                    Filter = Path.GetFileName(fullPath), 
                     NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName
                 };
 
@@ -276,7 +271,7 @@ namespace EVDRV
 
         private void FileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
         {
-            Thread.Sleep(500); // Wait for the file write to complete
+            Thread.Sleep(500);
 
             if (this.IsHandleCreated)
             {
@@ -284,7 +279,7 @@ namespace EVDRV
                 {
                     try
                     {
-                        fileWatcher.EnableRaisingEvents = false; // 🛑 Stop watching
+                        fileWatcher.EnableRaisingEvents = false;
 
                         LoadPieChartForInActiveAndActive();
                         LoadPieChartForMaleAndFemale();
@@ -294,7 +289,7 @@ namespace EVDRV
                     }
                     finally
                     {
-                        fileWatcher.EnableRaisingEvents = true; // ✅ Resume watching
+                        fileWatcher.EnableRaisingEvents = true;
                     }
                 }));
             }
