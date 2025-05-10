@@ -340,10 +340,16 @@ namespace EVDRV
                 }
                 else if (isRepeated == false)
                 {
-                    MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+
+                    if(!string.IsNullOrEmpty(pathpic)){
+                                        MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
                     SaveImageToSavedPhoto();
+                    }
+                    else{
+                    MessageBox.Show("No Image", "No Image", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
         }
