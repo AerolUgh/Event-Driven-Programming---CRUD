@@ -183,8 +183,8 @@ namespace EVDRV
             form1.cmbFavcolor.Text = dataGridView1.Rows[r].Cells[3].Value.ToString();
             form1.txtUserName.Text = dataGridView1.Rows[r].Cells[8].Value.ToString();
             form1.txtPassword.Text = dataGridView1.Rows[r].Cells[9].Value.ToString();
-            form1.txtCourse.Text = dataGridView1.Rows[r].Cells[5].Value.ToString();
-            form1.txtStatus.Text = dataGridView1.Rows[r].Cells[10].Value.ToString();
+            form1.cmbCourses.Text = dataGridView1.Rows[r].Cells[5].Value.ToString();
+            form1.cmbStatus.Text = dataGridView1.Rows[r].Cells[10].Value.ToString();
             form1.txtEmail.Text = dataGridView1.Rows[r].Cells[6].Value.ToString();
             form1.pictureBox1.ImageLocation = dataGridView1.Rows[r].Cells[11].Value.ToString();
 
@@ -246,7 +246,7 @@ namespace EVDRV
             this.Hide();
             form1.Show();
             form1.btnUpdate.Visible = true;
-            form1.txtStatus.Enabled = false;
+            form1.cmbStatus.Enabled = false;
             form1.dateTimePicker1.Enabled = false;
             form1.btnDisplay.Visible = false;
             form1.btnAdd.Visible = false;

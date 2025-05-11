@@ -118,33 +118,7 @@ namespace EVDRV
         {
             try
             {
-                string rad = "";
-                string chk = "";
-                if (radFemale.Checked)
-                {
-                    rad = radFemale.Text;
-                }
-                else if (radMale.Checked)
-                {
-                    rad = radMale.Text;
-                }
-
-                if (chkBasketball.Checked)
-                {
-                    chk += $"{chkBasketball.Text} ";
-                }
-                if (chkOG.Checked)
-                {
-                    chk += $"{chkOG.Text} ";
-                }
-                if (chkVolleyball.Checked)
-                {
-                    chk += $"{chkVolleyball.Text} ";
-                }
-                if (chkOthers.Checked)
-                {
-                    chk += $"{chkOthers.Text} ";
-                }
+                
 
                 //string data = "";
 
@@ -155,19 +129,11 @@ namespace EVDRV
                 //data += $"{txtSaying.Text}";
 
                 //people[i] = data;
-                name = txtName.Text;
-                favcolor = cmbFavcolor.Text;
-                saying = txtSaying.Text;
-                username = txtUserName.Text;
-                password = txtPassword.Text;
-                status = txtStatus.Text;
-                email = txtEmail.Text;
-                profilepath = pathpic;
 
                 ID = Convert.ToInt32(lblID.Text);
 
-                form2.GetUpdatedDataFromFr1(ID, name, rad, chk, favcolor, saying, course, username, password, status, email, profilepath, CalculateAge(dateTimePicker1.Value).ToString());
-                form2.UpdateDataToExcel(ID, name, rad, chk, favcolor, saying, course, username, password, status, email, profilepath, CalculateAge(dateTimePicker1.Value).ToString());
+                form2.GetUpdatedDataFromFr1(ID, name, gender, hobbies, favcolor, saying, course, username, password, status, email, profilepath, CalculateAge(dateTimePicker1.Value).ToString());
+                form2.UpdateDataToExcel(ID, name, gender, hobbies, favcolor, saying, course, username, password, status, email, profilepath, CalculateAge(dateTimePicker1.Value).ToString());
                 form2.LoadActiveData();
                 form2.Show();
                 this.Hide();
@@ -181,8 +147,6 @@ namespace EVDRV
 
         public void InsertData(string name, string gender, string hobbies, string favcolor, string saying, string course, string username, string password, string status, string email, string profilepath, string age)
         {
-           
-
             try
             {
                 book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
@@ -262,9 +226,11 @@ namespace EVDRV
                 chkOthers.Checked = false;
                 chkVolleyball.Checked = false;
                 cmbFavcolor.Text = string.Empty;
-                txtStatus.Text = string.Empty;
-                txtCourse.Text = string.Empty;
+                cmbStatus.Text = string.Empty;
+                cmbCourses.Text = string.Empty;
                 txtEmail.Text = string.Empty;
+                pictureBox1.Image = null;
+                dateTimePicker1.Value = DateTime.Now;
             }
             catch (Exception ex)
             {
@@ -340,15 +306,17 @@ namespace EVDRV
                 }
                 else if (isRepeated == false)
                 {
+                    if(!string.IsNullOrEmpty(pathpic))
+                    {
+                        MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
 
-                    if(!string.IsNullOrEmpty(pathpic)){
-                                        MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
-                    SaveImageToSavedPhoto();
+                        SaveImageToSavedPhoto();
                     }
-                    else{
-                    MessageBox.Show("No Image", "No Image", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
+                    {
+                        MessageBox.Show("No image in PictureBox to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -363,7 +331,7 @@ namespace EVDRV
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text;
+            /*string email = txtEmail.Text;
             string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
             if (!Regex.IsMatch(email, gmailPattern))
             {
@@ -382,6 +350,41 @@ namespace EVDRV
 
 
                 InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic);
+            }*/
+
+            string rad = "";
+            string chk = "";
+
+            book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
+            Worksheet sheet = book.Worksheets[0];
+
+            if (ValidateMyForm())
+            {
+                string email = txtEmail.Text;
+                string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+                if (!Regex.IsMatch(email, gmailPattern))
+                {
+                    MessageBox.Show("Please enter a valid Gmail address (e.g., example@gmail.com).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmail.Focus();
+                    return;
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(pathpic))
+                    {
+                        MessageBox.Show("Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        int ID = Convert.ToInt32(lblID.Text);
+
+                        InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic);
+
+                        SaveImageToSavedPhoto();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No image in PictureBox to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
         }
 
@@ -397,13 +400,17 @@ namespace EVDRV
         {
             if (pictureBox1.Image != null)
             {
-                string savedPhotoFolder = Path.Combine(Application.StartupPath, "SavedPhoto");
+                // Get the project directory (two levels up from bin\Debug or bin\Release)
+                string projectDir = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string savedPhotoFolder = Path.Combine(projectDir, "Profiles");
 
+                // Ensure the folder exists
                 if (!Directory.Exists(savedPhotoFolder))
                 {
                     Directory.CreateDirectory(savedPhotoFolder);
                 }
 
+                // Save the image using the username as the file name
                 string fileName = txtUserName.Text + ".png";
                 string savePath = Path.Combine(savedPhotoFolder, fileName);
 
@@ -411,11 +418,8 @@ namespace EVDRV
 
                 pictureBox1.Image.Save(savePath, System.Drawing.Imaging.ImageFormat.Png);
             }
-            else
-            {
-                message += "No image in PictureBox to save. \n";
-            }
         }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
