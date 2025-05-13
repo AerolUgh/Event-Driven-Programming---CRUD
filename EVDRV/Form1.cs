@@ -388,9 +388,12 @@ namespace EVDRV
 
                             ProfileSaveToFolder();
 
+                            if (lblName.Text == Admin.Name)
+                            {
+                                form4.pictureBox1.ImageLocation = path.picpath;
+                            }
+
                             InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic);
-                            
-                            
                         }
                     }
                     else

@@ -26,7 +26,7 @@ namespace EVDRV
             form5 = new Form5();
             form4 = new Form4(Admin.Name);
             lblName.Text = Admin.Name;
-            
+            pictureBox6.ImageLocation = path.picpath;
         }
 
         public void LoadActiveData()
