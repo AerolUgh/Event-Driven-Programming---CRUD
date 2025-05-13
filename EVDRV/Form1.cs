@@ -148,8 +148,8 @@ namespace EVDRV
 
                 ID = Convert.ToInt32(lblID.Text);
 
-                form2.GetUpdatedDataFromFr1(ID, name, rad, chk, favcolor, saying, course, username, password, status, email, base64ProfileToExcel(pathofpic), CalculateAge(dateTimePicker1.Value).ToString());
-                form2.UpdateDataToExcel(ID, name, rad, chk, favcolor, saying, course, username, password, status, email, base64ProfileToExcel(pathofpic), CalculateAge(dateTimePicker1.Value).ToString());
+                form2.GetUpdatedDataFromFr1(ID, name, rad, chk, favcolor, saying, course, username, password, status, email, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
+                form2.UpdateDataToExcel(ID, name, rad, chk, favcolor, saying, course, username, password, status, email, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
                 form2.LoadActiveData();
                 form2.Show();
                 this.Hide();
@@ -322,11 +322,14 @@ namespace EVDRV
                 }
                 else if (isRepeated == false)
                 {
-                    if(selectedImage != null)
+                    if(pictureBox1.ImageLocation != null)
                     {
                         MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, base64ProfileToExcel(pathofpic), CalculateAge(dateTimePicker1.Value).ToString());
+
+                        ProfileSaveToFolder();
+
+                        InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
 
                     }
                     else
@@ -385,13 +388,16 @@ namespace EVDRV
                 }
                 else
                 {
-                    if (selectedImage != null)
+                    if (pictureBox1.ImageLocation != null)
                     {
                         MessageBox.Show("Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         int ID = Convert.ToInt32(lblID.Text);
 
-                        InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, base64ProfileToExcel(pathofpic));
+
+                        ProfileSaveToFolder();
+
+                        InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic);
 
                     }
                     else
@@ -404,23 +410,36 @@ namespace EVDRV
 
         private void btnChoosePic_Click(object sender, EventArgs e)
         {
+            openFileDialog1.ShowDialog();
             openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                selectedImage = Image.FromFile(openFileDialog1.FileName);
-                pictureBox1.Image = selectedImage;
-                pathofpic = openFileDialog1.FileName;
-            }
+            pictureBox1.ImageLocation = openFileDialog1.FileName;
         }
 
-        private Image selectedImage;
-        private string pathofpic;
+        private string pathpic;
 
 
-        private string base64ProfileToExcel(string pathpic)
+        private void ProfileSaveToFolder()
         {
-            byte[] imageByte = File.ReadAllBytes(pathpic);
-            return Convert.ToBase64String(imageByte);
+            if (pictureBox1.Image != null)
+            {
+                // Get the project directory (two levels up from bin\Debug or bin\Release)
+                string projectDir = Directory.GetParent(Application.StartupPath).Parent.Parent.Parent.FullName;
+                string savedPhotoFolder = Path.Combine(projectDir, "EVDRV", "Profiles");
+
+                // Ensure the folder exists
+                if (!Directory.Exists(savedPhotoFolder))
+                {
+                    Directory.CreateDirectory(savedPhotoFolder);
+                }
+
+                // Save the image using the username as the file name
+                string fileName = txtUserName.Text + ".png";
+                string savePath = Path.Combine(savedPhotoFolder, fileName);
+
+                pathpic = savePath;
+
+                pictureBox1.Image.Save(savePath, ImageFormat.Png);
+            }
         }
 
 

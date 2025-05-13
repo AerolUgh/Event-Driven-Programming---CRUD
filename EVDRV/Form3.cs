@@ -34,20 +34,12 @@ namespace EVDRV
             {
                 if (sheet.Range[i, 9].Value == txtUserName.Text && sheet.Range[i, 10].Value == txtPassword.Text)
                 {
-                    
-                        log = true;
-                        Admin.Name = sheet.Range[i, 1].Value;
-                        form4 = new Form4(Admin.Name);
-
-                        string base64 = sheet.Range[i, 12].Value;
-                        byte[] imgBytes = Convert.FromBase64String(base64);
-                        
-                        using (MemoryStream ms = new MemoryStream(imgBytes))
-                        {
-                            form4.pictureBox1.Image = Image.FromStream(ms);
-                        }
-                        break;
-                    
+                    log = true;
+                    Admin.Name = sheet.Range[i, 1].Value;
+                    form4 = new Form4(Admin.Name);
+                    form4.pictureBox1.ImageLocation = sheet.Range[i, 12].Value;
+                    form4.ShowDialog();
+                    break;
                 }
                 else
                 {
