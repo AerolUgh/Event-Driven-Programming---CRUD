@@ -287,7 +287,6 @@ namespace EVDRV
 
             book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
             Worksheet sheet = book.Worksheets[0];
-
             if (ValidateMyForm())
             {
                 
@@ -422,8 +421,8 @@ namespace EVDRV
         {
             if (pictureBox1.Image != null)
             {
-                // Get the project directory (two levels up from bin\Debug or bin\Release)
-                string projectDir = Directory.GetParent(Application.StartupPath).Parent.Parent.Parent.FullName;
+                //Get the project directory(two levels up from bin\Debug or bin\Release)
+                string projectDir = Directory.GetParent(Application.StartupPath).Parent.Parent.FullName;
                 string savedPhotoFolder = Path.Combine(projectDir, "EVDRV", "Profiles");
 
                 // Ensure the folder exists
