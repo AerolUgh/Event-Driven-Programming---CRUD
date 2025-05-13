@@ -39,6 +39,8 @@ namespace EVDRV
             chart4.Titles.Add("Hobbies");
             chart5.Titles.Add("Courses");
             lblName.Text = name;
+
+            
         }
 
         private void LoadPieChartForInActiveAndActive()
@@ -286,6 +288,7 @@ namespace EVDRV
                         LoadBarChartForColors();
                         LoadBarChartForHobbies();
                         LoadBarChartForCourses();
+
                     }
                     finally
                     {

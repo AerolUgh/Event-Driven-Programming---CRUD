@@ -22,6 +22,7 @@ namespace EVDRV
     public partial class Form1 : Form
     {
         private Form2 form2;
+        Form4 form4;
         Workbook book = new Workbook();
         string message = "";
 
@@ -29,6 +30,7 @@ namespace EVDRV
         {
             InitializeComponent();
             form2 = form;
+            form4 = new Form4(Admin.Name);
             lblName.Text = Admin.Name;
             pictureBox6.ImageLocation = path.picpath;
         }
@@ -324,7 +326,7 @@ namespace EVDRV
                 {
                     if(pictureBox1.ImageLocation != null)
                     {
-                        if (dateTimePicker1.Value <= DateTime.Now)
+                        if (dateTimePicker1.Value >= DateTime.Now)
                         {
                             MessageBox.Show("Please enter Correct Date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
@@ -374,17 +376,21 @@ namespace EVDRV
                 {
                     if (pictureBox1.ImageLocation != null)
                     {
-                        if (dateTimePicker1.Value <= DateTime.Now)
+                        if (dateTimePicker1.Value >= DateTime.Now)
                         {
                             MessageBox.Show("Please enter Correct Date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else
                         {
+                            int ID = Convert.ToInt32(lblID.Text);
+
                             MessageBox.Show("Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             ProfileSaveToFolder();
 
                             InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic);
+                            
+                            
                         }
                     }
                     else
