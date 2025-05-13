@@ -30,6 +30,7 @@ namespace EVDRV
             InitializeComponent();
             form2 = form;
             lblName.Text = Admin.Name;
+            pictureBox6.ImageLocation = path.picpath;
         }
 
         private bool ValidateMyForm()

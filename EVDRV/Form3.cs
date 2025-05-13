@@ -21,6 +21,7 @@ namespace EVDRV
 
         Form4 form4;
 
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Workbook book = new Workbook();
@@ -34,11 +35,11 @@ namespace EVDRV
             {
                 if (sheet.Range[i, 9].Value == txtUserName.Text && sheet.Range[i, 10].Value == txtPassword.Text)
                 {
-                    log = true;
                     Admin.Name = sheet.Range[i, 1].Value;
                     form4 = new Form4(Admin.Name);
                     form4.pictureBox1.ImageLocation = sheet.Range[i, 12].Value;
-                    form4.ShowDialog();
+                    path.picpath = form4.pictureBox1.ImageLocation;
+                    log = true;
                     break;
                 }
                 else

@@ -23,6 +23,7 @@ namespace EVDRV
             dataGridView1.ClearSelection(); 
             form4 = new Form4(Admin.Name);
             lblName.Text = Admin.Name;
+            pictureBox6.ImageLocation = path.picpath;
         }
 
         public void LoadInactiveData()

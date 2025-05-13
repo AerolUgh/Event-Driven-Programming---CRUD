@@ -9,5 +9,7 @@ namespace EVDRV
     class path
     {
         public static string pathfile = @"C:\Users\ACT-STUDENT\Desktop\Event-Driven-Programming---CRUD\Book1.xlsx"; //Path File
+
+        public static string picpath { get; set; }  
     }
 }

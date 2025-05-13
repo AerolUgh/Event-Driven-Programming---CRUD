@@ -19,6 +19,7 @@ namespace EVDRV
         {
             InitializeComponent();
             lblName.Text = Admin.Name;
+            pictureBox6.ImageLocation = path.picpath;
         }
 
         public void DisplayLogs()

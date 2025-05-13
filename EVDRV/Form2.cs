@@ -26,6 +26,7 @@ namespace EVDRV
             form5 = new Form5();
             form4 = new Form4(Admin.Name);
             lblName.Text = Admin.Name;
+            
         }
 
         public void LoadActiveData()
@@ -59,6 +60,7 @@ namespace EVDRV
             }
 
             dataGridView1.DataSource = dt;
+            pictureBox6.ImageLocation = path.picpath;
         }
 
         public void UpdateDataToExcel(int ID, string name, string gender, string hobbies, string favcolor, string saying, string course, string username, string password, string status, string email, string profilepath, string age)
