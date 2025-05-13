@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,6 @@ namespace EVDRV
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
             Workbook book = new Workbook();
             book.LoadFromFile(path.pathfile); //Change the path to where is the excel locate.
             Worksheet sheet = book.Worksheets[0];
@@ -34,11 +34,20 @@ namespace EVDRV
             {
                 if (sheet.Range[i, 9].Value == txtUserName.Text && sheet.Range[i, 10].Value == txtPassword.Text)
                 {
-                    log = true;
-                    Admin.Name = sheet.Range[i, 1].Value;
-                    form4 = new Form4(Admin.Name);
-                    form4.pictureBox1.ImageLocation = sheet.Range[i, 12].Value;
-                    break;
+                    
+                        log = true;
+                        Admin.Name = sheet.Range[i, 1].Value;
+                        form4 = new Form4(Admin.Name);
+
+                        string base64 = sheet.Range[i, 12].Value;
+                        byte[] imgBytes = Convert.FromBase64String(base64);
+                        
+                        using (MemoryStream ms = new MemoryStream(imgBytes))
+                        {
+                            form4.pictureBox1.Image = Image.FromStream(ms);
+                        }
+                        break;
+                    
                 }
                 else
                 {
@@ -70,6 +79,11 @@ namespace EVDRV
             {
                 txtPassword.PasswordChar = '*';
             }
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

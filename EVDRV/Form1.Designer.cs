@@ -63,8 +63,10 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.cmbCourses = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
@@ -86,8 +88,6 @@
             this.btnChoosePic = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.cmbCourses = new System.Windows.Forms.ComboBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -483,6 +483,20 @@
             this.panel9.Size = new System.Drawing.Size(270, 59);
             this.panel9.TabIndex = 55;
             // 
+            // cmbCourses
+            // 
+            this.cmbCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCourses.FormattingEnabled = true;
+            this.cmbCourses.Items.AddRange(new object[] {
+            "BSIT",
+            "BSCS",
+            "BSComEng",
+            "BSNursing"});
+            this.cmbCourses.Location = new System.Drawing.Point(110, 19);
+            this.cmbCourses.Name = "cmbCourses";
+            this.cmbCourses.Size = new System.Drawing.Size(127, 21);
+            this.cmbCourses.TabIndex = 21;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -502,6 +516,18 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(270, 59);
             this.panel8.TabIndex = 54;
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.cmbStatus.Location = new System.Drawing.Point(110, 18);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(127, 21);
+            this.cmbStatus.TabIndex = 21;
             // 
             // panel7
             // 
@@ -707,38 +733,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // cmbCourses
-            // 
-            this.cmbCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCourses.FormattingEnabled = true;
-            this.cmbCourses.Items.AddRange(new object[] {
-            "BSIT",
-            "BSCS",
-            "BSComEng",
-            "BSNursing"});
-            this.cmbCourses.Location = new System.Drawing.Point(110, 19);
-            this.cmbCourses.Name = "cmbCourses";
-            this.cmbCourses.Size = new System.Drawing.Size(127, 21);
-            this.cmbCourses.TabIndex = 21;
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "Blue",
-            "Yellow",
-            "Black",
-            "White",
-            "Pink",
-            "Red",
-            "Orange",
-            "Green"});
-            this.cmbStatus.Location = new System.Drawing.Point(110, 18);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(127, 21);
-            this.cmbStatus.TabIndex = 21;
             // 
             // Form1
             // 
