@@ -324,13 +324,18 @@ namespace EVDRV
                 {
                     if(pictureBox1.ImageLocation != null)
                     {
-                        MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dateTimePicker1.Value <= DateTime.Now)
+                        {
+                            MessageBox.Show("Please enter Correct Date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                            ProfileSaveToFolder();
 
-                        ProfileSaveToFolder();
-
-                        InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
-
+                            InsertData(txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic, CalculateAge(dateTimePicker1.Value).ToString());
+                        }
                     }
                     else
                     {
@@ -349,27 +354,6 @@ namespace EVDRV
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            /*string email = txtEmail.Text;
-            string gmailPattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
-            if (!Regex.IsMatch(email, gmailPattern))
-            {
-                MessageBox.Show("Please enter a valid Gmail address (e.g., example@gmail.com).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtEmail.Focus();
-                return;
-            }
-            else
-            {
-
-                SaveImageToSavedPhoto();
-
-                int ID = Convert.ToInt32(lblID.Text);
-                string rad = "";
-                string chk = "";
-
-
-                InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, txtCourse.Text, txtUserName.Text, txtPassword.Text, txtStatus.Text, txtEmail.Text, pathpic);
-            }*/
-
             string rad = "";
             string chk = "";
 
@@ -390,15 +374,18 @@ namespace EVDRV
                 {
                     if (pictureBox1.ImageLocation != null)
                     {
-                        MessageBox.Show("Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dateTimePicker1.Value <= DateTime.Now)
+                        {
+                            MessageBox.Show("Please enter Correct Date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        int ID = Convert.ToInt32(lblID.Text);
+                            ProfileSaveToFolder();
 
-
-                        ProfileSaveToFolder();
-
-                        InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic);
-
+                            InsertUpdatedData(ID, txtName.Text, rad, chk, cmbFavcolor.Text, txtSaying.Text, cmbCourses.Text, txtUserName.Text, txtPassword.Text, cmbStatus.Text, txtEmail.Text, pathpic);
+                        }
                     }
                     else
                     {
